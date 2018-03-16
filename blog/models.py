@@ -10,6 +10,9 @@ class Blog(models.Model):
     posted = models.DateTimeField(db_index=True, auto_now_add=True)
     category = models.ForeignKey('blog.Category', on_delete=None)
 
+    def __str__(self):
+        return self.slug
+
     def __unicode__(self):
         return '%s' % self.title
 
@@ -20,6 +23,9 @@ class Blog(models.Model):
 class Category(models.Model):
     title = models.CharField(max_length=100, db_index=True)
     slug = models.SlugField(max_length=100, db_index=True, unique=True)
+
+    def __str__(self):
+        return self.slug
 
     def __unicode__(self):
         return '%s' % self.title
